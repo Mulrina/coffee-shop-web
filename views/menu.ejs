@@ -18,19 +18,13 @@
     <% } %>
     
     <h3>Products:</h3>
-    <% menuItems.forEach(item => { %>
+    <% menuItems.forEach(function(item) { %>
         <div class="menu-item">
             <h4><%= item.product_name %></h4>
             <% if (item.description) { %>
                 <p><%= item.description %></p>
             <% } %>
-            <% if (item.price) { %>
-                <p class="price">$<%= item.price %></p>
-            <% } else if (item.current_price) { %>
-                <p class="price">$<%= item.current_price %></p>
-            <% } else if (item.product_price) { %>
-                <p class="price">$<%= item.product_price %></p>
-            <% } %>
+            <p class="price">$<%= item.base_price %></p>
         </div>
     <% }); %>
 </body>
