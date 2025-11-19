@@ -1,50 +1,37 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .menu-item { border: 1px solid #ddd; padding: 15px; margin: 10px 0; }
+        .price { color: #8B4513; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand" href="/">☕ Coffee House</a>
-        </div>
-    </nav>
+    <a href="/">← Back</a>
+    <h1>Menu</h1>
     
-    <main class="container main-content">
-        <div class="menu-header">
-            <h1>Menu</h1>
-            <p class="menu-subtitle">organic • low sugar • mindful ingredients</p>
-        </div>
-
-        <div class="menu-grid">
-            <% menuItems.forEach(function(item) { %>
-            <div class="menu-item">
-                <div class="menu-item-content">
-                    <div class="menu-item-info">
-                        <h3><%= item.product_name %></h3>
-                        <p><%= item.description %></p>
-                        <div class="menu-item-category"><%= item.category_name %></div>
-                    </div>
-                    <     lass="menu-item-price">
-                        <span class="price"><%= item.current_price %> ₽</span>
-                    </div>
-                </div>
-            </div>
-            <% }); %>
-        </div>
-        
-        <div style="text-align: center; margin-top: 2rem;">
-            <a href="/" class="btn">Back to Main</a>
-        </div>
-    </main>
+    <% if (branch) { %>
+        <h2><%= branch.branch_name %></h2>
+        <p><%= branch.address %></p>
+    <% } %>
     
-    <footer>
-        <div class="container">
-            <p>Coffee House 2024</p>
+    <h3>Products:</h3>
+    <% menuItems.forEach(item => { %>
+        <div class="menu-item">
+            <h4><%= item.product_name %></h4>
+            <% if (item.description) { %>
+                <p><%= item.description %></p>
+            <% } %>
+            <% if (item.price) { %>
+                <p class="price">$<%= item.price %></p>
+            <% } else if (item.current_price) { %>
+                <p class="price">$<%= item.current_price %></p>
+            <% } else if (item.product_price) { %>
+                <p class="price">$<%= item.product_price %></p>
+            <% } %>
         </div>
-    </footer>
+    <% }); %>
 </body>
 </html>
