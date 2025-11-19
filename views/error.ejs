@@ -1,0 +1,14 @@
+<%- include('partials/header', { title: title || 'Error' }) %>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <div class="alert alert-danger">
+            <h1>Coffee House</h1>
+            <h2><%= title || 'Error' %></h2>
+            <p><%= message || 'An error occurred' %></p>
+            <a href="/" class="btn btn-primary">Back to Main Page</a>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
